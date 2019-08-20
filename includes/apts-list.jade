@@ -1,0 +1,65 @@
+- 
+  var aptsList = [
+
+    {
+      Image: "./src/img/4bedroom.png",
+      title: "Четырехкомнатная 67 м2",
+      price: "7 654 000 ",
+      discount: true,
+      oldPrice: "7 954 000 ",
+      section: "2 секция",
+      floor: "3 этаж",
+      number: "№ 204",
+    },
+    {
+      Image: "./src/img/studio.png",
+      title: "XS (студия) 29 м2",
+      price: "2 704 000 ",
+      discount: false,
+      oldPrice: null,
+      section: "2 секция",
+      floor: "3 этаж",
+      number: "№ 204",
+    },
+    {
+      Image: "./src/img/3bedroom.png",
+      title: "М (3-евро) 55 м2",
+      price: "6 354 000 ",
+      discount: false,
+      oldPrice: null,
+      section: "2 секция",
+      floor: "3 этаж",
+      number: "№ 204",
+    },
+  ];
+
+mixin apts-card(apts)
+  .apts-card
+    img.apts-img(src=apts.Image)
+    .apts-title= apts.title
+    .apts-price-section
+      if apts.discount
+        span.apts-price-section__price
+          = apts.price
+          i(class="fa fa-rub" aria-hidden="true")
+        span.apts-price-section__discount
+          = apts.oldPrice
+          i(class="fa fa-rub" aria-hidden="true")
+      else
+        span.apts-price-section__price
+          = apts.price
+          i(class="fa fa-rub" aria-hidden="true")
+        span.apts-price-section__discount(style="visibility:hidden")
+          = apts.oldPrice
+          span.ruble 
+            i(class="fa fa-rub" aria-hidden="true")
+    .apts-placement
+      span.apts-placement__section= apts.section
+      span.apts-placement__split |
+      span.apts-placement__floor= apts.floor
+      span.apts-placement__split |
+      span.apts-placement__nimber= apts.number
+
+section.apts-list
+  for apts in aptsList
+    +apts-card(apts)
